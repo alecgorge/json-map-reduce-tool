@@ -55,7 +55,13 @@ function ctrler($scope) {
 
   $scope.hydrate = function() {
     if (localStorage["json"]) editor.setText(localStorage["json"]);
-    if (localStorage["data"] && localStorage["data"].length > 0) $scope.items = JSON.parse(localStorage["data"]);
+    if (localStorage["data"]) {
+      var j =JSON.parse(localStorage["data"]);
+
+      if(j.length > 0) {
+        $scope.items = j;
+      }
+    }
     if (localStorage["new_editor"]) new_editor.getSession().setValue(JSON.parse(localStorage["new_editor"]));
     if (localStorage["is_horiz"]) $scope.is_horiz = JSON.parse(localStorage["new_editor"]);
   }
