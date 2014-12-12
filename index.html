@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>JSON Map Reduce Tool</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+  <!-- json editor -->
+  <link rel="stylesheet" type="text/css" href="asset/jsoneditor/jsoneditor.min.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
+
+  <script type="text/javascript" src="asset/jsoneditor/jsoneditor.min.js"></script>
+
+  <!-- ace editor -->
+  <script type="text/javascript" src="asset/ace/ace.js"></script>
+
+  <!-- json lint -->
+  <script type="text/javascript" src="asset/jsonlint/jsonlint.js"></script>
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+  <style type="text/css">
+  </style>
+</head>
+<body>
+
+  <div id="container" class="viewport" ng-class="{horiz: is_horiz}" ng-app="" ng-controller="ctrler">
+    <header>
+      <h1>JSON Map Reduce Tool</h1>
+      <p>This tool allows you to easily map, filter, reduce and sort JSON arrays. It persists settings between reloads. It can help you quickly process data. By <a href="http://alecgorge.com">Alec Gorge</a> and available <a href="https://github.com/alecgorge/json-map-reduce-tool">on GitHub</a>. Forks are welcome!</p>
+    </header>
+    <div id="dummy">
+    <div id="jsoneditor" class="j-editor"></div>
+    <section>
+      <ul id="queue">
+        <li data-ng-repeat="i in items">
+          <span class="pull-left">
+            {{i.type}}
+          </span>
+          <span class="pull-right">
+            <a href="#edit" ng-click="edit($index)">edit</a>
+            <a href="#up" ng-click="moveUp($index)" ng-show="$index != 0">&uarr;</a>
+            <a href="#down" ng-click="moveDown($index)" ng-show="$index != items.length - 1">&darr;</a>
+            <a href="#delete" ng-click="delete($index)">&times;</a>
+          </span>
+          {{i.name}}
+        </li>
+      </ul>
+      <div id="editors-containers">
+      <div id="new-editor" ng-hide="editing">function (object) {
+  return object;
+}</div>
+      <div id="edit-editor" ng-show="editing">function (object) {
+  return object;
+}</div>
+    </div>
+      <div id="buttons">
+        <input ng-if="!editing" ng-model="data.name" placeholder="Name for the operation" />
+        <input ng-if="editing" ng-model="data.edit_name" placeholder="Edit name for the operation" />
+        <button ng-if="editing" ng-click="add(items[editing_index].type)">Save as {{items[editing_index].type}}</button>
+        <div class="add_buttons" ng-show="!editing">
+        <br/>
+        <button ng-if="!editing"ng-click="add('map')">Add as Map</button>
+        <br/>
+        <button ng-if="!editing"ng-click="add('filter')">Add as Filter</button>
+        <br/>
+        <button ng-if="!editing"ng-click="add('reduce')">Add as Reduce</button>
+        <br/>
+        <button ng-if="!editing"ng-click="add('sort')">Add as Sort</button>
+        </div>
+        <br/>
+        <button ng-click="run()">Run</button> <button ng-click="is_horiz = false" ng-show="is_horiz">Use Ξ Layout</button> <button ng-click="is_horiz = true" ng-show="!is_horiz">Use ||| Layout</button>
+        <br/>
+        <button ng-if="editing" ng-click="switchToAdd()">Discard changes and make new</button>
+        <p>Sort functions are invoked with 2 arguments: <code>objectA, objectB</code></p>
+        <p>Map and filter functions are invoked with 3 arguments: <code>currentValue, index, array</code></p>
+        <p>Reduce functions are invoked with 3 arguments: <code>previousValue, currentValue, index, array</code></p>
+      </div>
+    </section>
+    <div id="jsoneditor2" class="j-editor"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

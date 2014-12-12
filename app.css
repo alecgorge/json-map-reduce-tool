@@ -1,0 +1,139 @@
+html, body, .viewport {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font: 10.5pt arial;
+  color: #4d4d4d;
+  line-height: 150%;
+}
+
+code {
+  background-color: #f5f5f5;
+}
+
+#jsoneditor {
+  width: 100%;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#container > header {
+  /*flex: 1;*/
+  height: 60px;
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 0;
+  line-height: 1.1em;
+}
+
+#container .j-editor {
+  flex: 3;
+  position: relative;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
+
+#container .j-editor .jsoneditor {
+  position: absolute;
+}
+
+#container > section {
+  flex: 2;
+  position: relative;
+}
+
+#container > footer {
+  height: 30px;
+}
+
+#new-editor, #edit-editor {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#queue {
+  margin: 0;
+  padding: 0;
+  border-right: 1px solid #ddd;
+  list-style: none;
+}
+
+#queue li {
+  list-style: none;
+  margin: 0;
+  padding: 7px;
+  line-height: 20px;
+}
+
+#queue li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 3px;
+}
+
+.pull-left {
+  float:left;
+  padding-right: 7px;
+  color:gray;
+  font-size: 90%;
+  width: 30px;
+  text-align: right;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.pull-right {
+  float:right;
+  padding-left: 7px;
+  color:gray;
+  font-size: 90%;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+}
+
+#queue, #buttons {
+  flex: 2;
+  height: auto;
+  overflow-y: auto;
+  position: relative;
+}
+
+#queue {
+  flex: 1;
+}
+
+#buttons {
+  padding: 20px;
+}
+
+#editors-containers {
+  flex: 4;
+  height: auto;
+  position: relative;
+}
+
+#dummy {
+  flex-direction: column;
+  flex: 1;
+  display:flex;
+}
+
+.horiz #dummy {
+  flex-direction: row;
+}
+
+.horiz section {
+  flex-direction: column;
+}
