@@ -24,7 +24,13 @@ new_editor = ace.edit("new-editor");
 edit_editor = ace.edit("edit-editor");
 
 function ctrler($scope) {
-  $scope.items = [];
+  $scope.items = [
+    {
+      "type": "filter",
+      "name": "Songs named Possum",
+      "code": "function (object) {\n  return object.Title.indexOf('Possum') === 0;\n}\n"
+    }
+  ];
 
   $scope.data = {};
   $scope.data.name = "";
